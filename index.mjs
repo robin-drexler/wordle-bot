@@ -153,7 +153,7 @@ async function checkHasWon(page) {
   return false;
 }
 
-async function main() {
+export async function solveWordle() {
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext(
     process.env.RECORD_VIDEO ? { recordVideo: { dir: "videos/" } } : {}
@@ -197,5 +197,3 @@ async function main() {
     await browser.close();
   }
 }
-
-main();
