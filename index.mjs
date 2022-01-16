@@ -188,6 +188,10 @@ async function main() {
   // todo plan for the game not being won
   await runTries(page, process.env.START_WORD?.toLocaleLowerCase() || "stare");
 
+  if (process.env.COPY_STATS) {
+    await page.locator("#share-button").click({ timeout: 10000 });
+  }
+
   if (process.env.RECORD_VIDEO) {
     await context.close();
     await browser.close();

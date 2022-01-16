@@ -36,6 +36,21 @@ To play yesterday's wordle, run:
 DAYS=-1 npm run play
 ```
 
+### `COPY_STATS`
+
+If set to `1`, will copy the stats to your clipboard after the game is done.
+
+Example:
+
+```
+Wordle 211 4/6
+
+🟨🟩⬜⬜🟨
+🟩🟩🟩⬜⬜
+🟩🟩🟩⬜⬜
+🟩🟩🟩🟩🟩
+```
+
 ### `RECORD_VIDEO`
 
 If set to `1`, the bot will record a video of its attempt to try to solve the wordle.
