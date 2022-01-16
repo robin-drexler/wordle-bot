@@ -6,6 +6,8 @@ https://user-images.githubusercontent.com/474248/149675322-3df54e90-b838-4a3b-bb
 
 ## Quick start
 
+Clone this repo.
+
 ```
 npm install
 npm run play
