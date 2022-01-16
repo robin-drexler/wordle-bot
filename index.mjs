@@ -41,7 +41,12 @@ async function getPositions(page) {
         toSet.push(tileIndex);
         correct.set(letter, toSet);
       }
-      if (state === "present") {
+      if (
+        state === "present" ||
+        // this happens when the same latter is already correct somewhere else
+        // if we don't add it here, it would retry the same word over and over
+        (state === "absent" && !absent.includes(letter))
+      ) {
         const toSet = present.get(letter) || [];
         toSet.push(tileIndex);
         present.set(letter, toSet);
@@ -68,6 +73,7 @@ async function runTries(page, suggestion = "", bannedWords = [], counter = 0) {
 
   if (!worked) {
     await eraseCurrentWord(page);
+
     bannedWords.push(suggestion);
   } else {
     counter++;
@@ -148,7 +154,6 @@ async function checkHasWon(page) {
 }
 
 async function main() {
-  console.log("GO");
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext(
     process.env.RECORD_VIDEO ? { recordVideo: { dir: "videos/" } } : {}
@@ -170,7 +175,6 @@ async function main() {
   }, time);
 
   const page = await context.newPage();
-  console.log("PAGE");
 
   await page.goto("https://www.powerlanguage.co.uk/wordle/");
 
