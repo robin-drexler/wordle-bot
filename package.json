@@ -5,8 +5,8 @@
   "main": "index.mjs",
   "bin": "bin.mjs",
   "scripts": {
-    "play": "node index.mjs",
-    "record": "RECORD_VIDEO=1 node index.mjs"
+    "play": "./bin.mjs",
+    "record": "RECORD_VIDEO=1 ./bin.mjs"
   },
   "keywords": [],
   "author": "",

@@ -6,11 +6,10 @@ https://user-images.githubusercontent.com/474248/149675322-3df54e90-b838-4a3b-bb
 
 ## Quick start
 
-Clone this repo.
+Install [`node`](https://nodejs.org/en/download/).
 
 ```
-npm install
-npm run play
+npx wordle-buddy
 ```
 
 ## Arguments
@@ -33,7 +32,7 @@ The number of days to look back or forwards to play other wordles.
 To play yesterday's wordle, run:
 
 ```
-DAYS=-1 npm run play
+DAYS=-1 npx wordle-buddy
 ```
 
 ### `COPY_STATS`
@@ -54,7 +53,3 @@ Wordle 211 4/6
 ### `RECORD_VIDEO`
 
 If set to `1`, the bot will record a video of its attempt to try to solve the wordle.
-
-Video will be saved to `./videos/`.
-
-Alternatively, you can also run `npm run record`
