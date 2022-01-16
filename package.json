@@ -1,5 +1,5 @@
 {
-  "name": "wordle-bot",
+  "name": "wordle-buddy",
   "version": "0.0.1",
   "description": "Bot that solves wordle puzzles",
   "main": "index.mjs",

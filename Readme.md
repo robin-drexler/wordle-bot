@@ -1,4 +1,4 @@
-# Wordle bot
+# Wordle Buddy
 
 A bot that plays [wordle](https://www.powerlanguage.co.uk/wordle/) in a Chrome browser.
 
