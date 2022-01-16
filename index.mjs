@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import { addFakeTimers } from "./add-fake-timers.mjs";
 import { suggestWord } from "./suggest-word.mjs";
 
 async function wait(seconds) {
@@ -160,30 +161,18 @@ export async function solveWordle() {
     process.env.RECORD_VIDEO ? { recordVideo: { dir: "videos/" } } : {}
   );
 
-  await context.addInitScript({
-    path: "./node_modules/sinon/pkg/sinon.js",
-  });
-
   let time = new Date().getTime();
 
   if (process.env.DAYS) {
     time += parseInt(process.env.DAYS, 10) * 86400 * 1000;
   }
 
-  await context.addInitScript((time) => {
-    // @ts-ignore
-    window.__clock = sinon.useFakeTimers(time);
-  }, time);
-
   const page = await context.newPage();
 
+  const afterLoad = await addFakeTimers(page, time);
+
   await page.goto("https://www.powerlanguage.co.uk/wordle/");
-
-  await page.evaluate(() => {
-    window.__clock.tick(1000);
-    window.__clock.restore();
-  });
-
+  await afterLoad();
   await page.locator(".close-icon").click();
 
   // todo plan for the game not being won
