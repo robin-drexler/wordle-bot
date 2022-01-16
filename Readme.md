@@ -15,7 +15,14 @@ npm run play
 
 There are a few environment variables that can be set to change the behaviour of the bot.
 
-`DAYS`: The number of days to look back or forwards to play other wordles.
+### `START_WORD`
+
+The word to start the wordle with.
+Otherwise starts with `stare`.
+
+### `DAYS`
+
+The number of days to look back or forwards to play other wordles.
 
 To play yesterday's wordle, run:
 
@@ -23,7 +30,10 @@ To play yesterday's wordle, run:
 DAYS=-1 npm run play
 ```
 
-`RECORD_VIDEO`: If set to `1`, the bot will record a video of its attempt to try to solve the wordle.
+### `RECORD_VIDEO`
+
+If set to `1`, the bot will record a video of its attempt to try to solve the wordle.
+
 Video will be saved to `./videos/`.
 
 Alternatively, you can also run `npm run record`

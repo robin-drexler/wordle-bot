@@ -182,7 +182,7 @@ async function main() {
   await page.locator(".close-icon").click();
 
   // todo plan for the game not being won
-  await runTries(page, "stare");
+  await runTries(page, process.env.START_WORD?.toLocaleLowerCase() || "stare");
 
   if (process.env.RECORD_VIDEO) {
     await context.close();
