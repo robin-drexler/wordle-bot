@@ -76,7 +76,7 @@ async function runTries(page, suggestion = "", bannedWords = [], counter = 0) {
   console.log({ hasWon });
 
   // todo check if there's no more row to try instead of counting
-  if (counter >= 5 || hasWon) {
+  if (counter >= 6 || hasWon) {
     return;
   }
 
@@ -154,14 +154,35 @@ async function main() {
     process.env.RECORD_VIDEO ? { recordVideo: { dir: "videos/" } } : {}
   );
 
+  await context.addInitScript({
+    path: "./node_modules/sinon/pkg/sinon.js",
+  });
+
+  let time = new Date().getTime();
+
+  if (process.env.DAYS) {
+    time += parseInt(process.env.DAYS, 10) * 86400 * 1000;
+  }
+
+  await context.addInitScript((time) => {
+    // @ts-ignore
+    window.__clock = sinon.useFakeTimers(time);
+  }, time);
+
   const page = await context.newPage();
   console.log("PAGE");
 
   await page.goto("https://www.powerlanguage.co.uk/wordle/");
+
+  await page.evaluate(() => {
+    window.__clock.tick(1000);
+    window.__clock.restore();
+  });
+
   await page.locator(".close-icon").click();
 
   // todo plan for the game not being won
-  await runTries(page, "woods");
+  await runTries(page, "stare");
 
   if (process.env.RECORD_VIDEO) {
     await context.close();

@@ -2,7 +2,7 @@
   "name": "wordle-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "play": "node index.mjs",
     "record": "RECORD_VIDEO=1 node index.mjs"
@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "playwright": "^1.17.2"
+    "playwright": "^1.17.2",
+    "sinon": "^12.0.1"
   }
 }
