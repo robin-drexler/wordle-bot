@@ -20,6 +20,10 @@ There are a few environment variables that can be set to change the behaviour of
 The word to start the wordle with.
 Otherwise starts with `stare`.
 
+```
+START_WORD=house npm run play
+```
+
 ### `DAYS`
 
 The number of days to look back or forwards to play other wordles.
